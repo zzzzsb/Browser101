@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Window Size</title>
+  <style>
+    .tag {
+      display: inline-block;
+      background-color: aliceblue;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 48px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tag">Window Size</div>
+  <script>
+    // class selector(.) 으로 DOM요소중 클래스가 tag인 첫번째 요소 선택
+    const tag = document.querySelector('.tag');
+    function updateTag() {
+       // tag안에 새로운 html 요소 넣어줌
+      // `~~~` : string template
+      tag.innerHTML = `
+        window.screen: ${window.screen.width}, ${window.screen.height} <br/>
+        window.outer: ${window.outerHeight}, ${window.outerHeight} <br/>
+        window.outer: ${window.innerWidth}, ${window.innerHeight} <br/>
+        documentElement.clientWidth: ${document.documentElement.clientWidth}
+      `;
+    }
+    // window에 이벤트리스너 등록, window창 resize 될때마다 콜백함수 호출
+    // 콜백함수 안에서 updateTag함수 호출
+    window.addEventListener('resize', () => {
+      updateTag();
+    });
+    // 페이지 처음 로딩시 실행되는 함수
+    updateTag();
+  </script>
+</body>
+</html>
